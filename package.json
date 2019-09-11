@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "ae-photo",
   "private": true,
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
+    "upload": "node ./.utils/uploader.js ~/Pictures/LR\\ Cloudinary"
   },
   "dependencies": {
     "gatsby": "^2.15.14",
@@ -18,13 +19,9 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "cli-progress": "^3.1.0",
+    "cloudinary": "^1.15.0",
+    "prettier": "^1.18.2",
+    "uniqid": "^5.0.3"
   }
 }
