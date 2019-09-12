@@ -7,8 +7,9 @@ export default ({ data }) => {
     let rendered = [];
     photos.forEach((photo) => {
         rendered.push(
-            <span>Image: {photo.id}</span>,
-            <Img key={photo.id} fluid={photo.localImage.childImageSharp.fluid} />
+            // <div style={{maxHeight: 500}}>
+                <Img key={photo.id} fixed={photo.localImage.childImageSharp.fixed} />
+            // </div>
         )
     })
     return rendered;
@@ -22,8 +23,8 @@ export const query = graphql`
                 photos {
                     localImage {
                         childImageSharp {
-                          fluid(maxWidth: 9999, maxHeight: 9999) {
-                            ...GatsbyImageSharpFluid
+                          fixed(quality: 100) {
+                            ...GatsbyImageSharpFixed
                           }
                         }
                       }
