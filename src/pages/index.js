@@ -1,10 +1,36 @@
 import React from "react"
-import photos from "../lib/photos.json"
+import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
-export default () => {
+export default ({ data }) => {
+    const photos = data.allImageData.edges[0].node.photos
     let rendered = [];
-    photos.photos.forEach((photo) => {
-        rendered.push(<img src={photo.url} style={{width: 100}, {height: 100}}/>)
+    photos.forEach((photo) => {
+        rendered.push(
+            <span>Image: {photo.id}</span>,
+            <Img key={photo.id} fluid={photo.localImage.childImageSharp.fluid} />
+        )
     })
     return rendered;
 }
+
+export const query = graphql`
+  query {
+    allImageData {
+        edges {
+            node {
+                photos {
+                    localImage {
+                        childImageSharp {
+                          fluid(maxWidth: 9999, maxHeight: 9999) {
+                            ...GatsbyImageSharpFluid
+                          }
+                        }
+                      }
+                      id
+                }
+            }
+        }
+    }
+  }
+`

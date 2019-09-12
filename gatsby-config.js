@@ -1,9 +1,27 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
+  plugins: [
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-json`,
+      options: {
+        typeName: `imageData`,
+        path: './src/lib/images'
+      }
+    },
+    { 
+      resolve: `gatsby-source-filesystem`, 
+      options: { 
+        path: `./src/lib/images`,
+        name: `imagesManifest`
+      }
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'imageData',
+        imagePath: 'photos[].url'
+      }
+    }
+  ]
 }
